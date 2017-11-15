@@ -31,6 +31,9 @@ Route::get('user/{name?}', function ($name = 'John') {
     return $name;
 })->where('name', '[A-Za-z]+');
 
-
-
+Route::prefix('admin')->group(function () {
+    Route::get('users', function () {
+        return 'User List';
+    });
+});
 

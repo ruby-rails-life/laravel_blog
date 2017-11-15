@@ -27,6 +27,14 @@ class RouteServiceProvider extends ServiceProvider
         Route::pattern('id', '[0-9]+');
 
         parent::boot();
+
+        //add 明示的な結合
+        //Route::model('user', App\User::class);
+        //add 独自の依存解決ロジックを使いたい場合
+        /*
+        Route::bind('user', function ($value) {
+            return App\User::where('name', $value)->first() ?? abort(404);
+        });*/
     }
 
     /**
