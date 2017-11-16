@@ -12,13 +12,11 @@
 */
 use Illuminate\Http\Request;
 
-/*
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('/', 'welcome');
-*/
+//Route::view('/', 'welcome');
 
 //req/tom?a=b&c=d
 Route::get('/req/{name?}', function (Request $request) {
@@ -68,7 +66,24 @@ Route::get('home', function () {
 
 Route::get('dashboard', function () {
     //return redirect('home');
-    return redirect()->route('profile', ['id' => 1]);
+    //return redirect()->route('profile', ['id' => 1]);
+    //フラッシュデータを保存
+    //return redirect('dashboard')->with('status', 'Profile updated!');
+    
+    //JSON
+    return response()->json([
+        'name' => 'Sally',
+        'age' => '20'
+    ]);
+
+    //return response()->caps('hello');
+
+    //ファイル表示
+    //return response()->file($pathToFile, $headers);
+
+    //download file
+    //return response()->download($pathToFile, $name, $headers);
+    //return response()->download($pathToFile)->deleteFileAfterSend(true);
 });
 
 
