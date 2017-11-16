@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::view('/', 'welcome');
 */
 
+//req/tom?a=b&c=d
 Route::get('/req/{name?}', function (Request $request) {
     echo 'path:' . $request->path();
     echo '****url:' . $request->url();
@@ -30,6 +31,8 @@ Route::get('/req/{name?}', function (Request $request) {
     echo '****query:' . $request->query('name', 'Helen');
     echo '****query():'; var_dump($request->query());
     echo '****name:' . $request->name;
+    echo '****only'; var_dump($request->only(['a']));
+    echo '****has:' . $request->has(['a', 'c']); 
 });
 
 Route::get('/hi', function () {
