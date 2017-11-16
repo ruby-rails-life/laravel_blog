@@ -89,6 +89,8 @@ Route::get('dashboard', function () {
 Route::get('/greet', function () {
     //return view('greeting', ['name' => 'James']);
     //return view('greeting')->with('name', 'James');
+
+    //AppServiceProvider->boot() 全ビュー間のデータ共有
     return view('greeting');
 });
 
