@@ -32,7 +32,8 @@ Route::get('/req/{name?}', function (Request $request) {
     echo '****query():'; var_dump($request->query());
     echo '****name:' . $request->name;
     echo '****only'; var_dump($request->only(['a']));
-    echo '****has:' . $request->has(['a', 'c']); 
+    echo '****has:' . $request->has(['a', 'c']);
+    echo '****filled:' . $request->filled('a'); 
 });
 
 Route::get('/hi', function () {
@@ -42,7 +43,8 @@ Route::get('/hi', function () {
 //add id pattern in RouteServiceProvider->boot()
 Route::get('user/{id}', function ($id) {
     return 'User '.$id;
-});//->where('id', '[0-9]+');
+})->name('profile');
+//->where('id', '[0-9]+');
 
 
 Route::get('user/{name?}', function ($name = 'John') {
@@ -57,4 +59,16 @@ Route::prefix('admin')->group(function () {
 
 Route::get('photos/popular', 'PhotoController@method');
 Route::resource('photos', 'PhotoController');
+
+Route::get('home', function () {
+    return response('return response : Hello World', 200)
+           ->header('Content-Type', 'text/plain')
+           ->cookie('cookie_name', 'cookie_value', 20);
+});
+
+Route::get('dashboard', function () {
+    //return redirect('home');
+    return redirect()->route('profile', ['id' => 1]);
+});
+
 
