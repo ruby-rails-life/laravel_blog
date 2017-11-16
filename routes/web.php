@@ -86,4 +86,10 @@ Route::get('dashboard', function () {
     //return response()->download($pathToFile)->deleteFileAfterSend(true);
 });
 
+Route::get('/greet', function () {
+    //return view('greeting', ['name' => 'James']);
+    //return view('greeting')->with('name', 'James');
+    return view('greeting');
+});
+
 
