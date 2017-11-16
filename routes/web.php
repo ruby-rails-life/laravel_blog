@@ -37,3 +37,6 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+Route::get('photos/popular', 'PhotoController@method');
+Route::resource('photos', 'PhotoController');
+
