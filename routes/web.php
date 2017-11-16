@@ -10,12 +10,27 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Http\Request;
+
 /*
 Route::get('/', function () {
     return view('welcome');
 });
-*/
+
 Route::view('/', 'welcome');
+*/
+
+Route::get('/req/{name?}', function (Request $request) {
+    echo 'path:' . $request->path();
+    echo '****url:' . $request->url();
+    echo '****fullUrl:' . $request->fullUrl();
+    echo '****method:' . $request->method();
+    echo '****all:'; var_dump($request->all());
+    echo '****input:' . $request->input('name', 'Sally');
+    echo '****query:' . $request->query('name', 'Helen');
+    echo '****query():'; var_dump($request->query());
+    echo '****name:' . $request->name;
+});
 
 Route::get('/hi', function () {
     return 'Hello World';
