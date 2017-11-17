@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\DB;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +22,13 @@ class AppServiceProvider extends ServiceProvider
         //カスタムディレクティブを定義
         Blade::directive('datetime', function ($expression) {
             return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
+        });
+        
+        //クエリイベントのリッスン
+        DB::listen(function ($query) {
+            // $query->sql
+            // $query->bindings
+            // $query->time
         });
     }
 

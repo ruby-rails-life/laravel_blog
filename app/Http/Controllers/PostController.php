@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = DB::table('posts')->get();
+        //$posts = DB::table('posts')->get();
+        $posts = DB::select('select * from posts');
         return view('post.index', ['posts' => $posts]);
     }
 
@@ -70,7 +71,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*
+        DB::transaction(function () {
+            DB::table('posts')->update('...');
+        }, 5);
+        */
     }
 
     /**
