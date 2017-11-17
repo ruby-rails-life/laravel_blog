@@ -27,4 +27,5 @@
 
 @section('content')
     <p>Hello, {{ $name }}</p>
+    @datetime(now())
 @endsection
