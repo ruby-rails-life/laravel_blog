@@ -36,6 +36,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        /*
+        if ($exception instanceof CustomException) {
+            //
+        }*/
         parent::report($exception);
     }
 
@@ -48,6 +52,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        /*
+        if ($exception instanceof CustomException) {
+            return response()->view('errors.custom', [], 500);
+        }*/
+        parent::render($request, $exception);
     }
 }
