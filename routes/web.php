@@ -55,8 +55,8 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-Route::get('photos/popular', 'PhotoController@method');
-Route::resource('photos', 'PhotoController');
+Route::get('posts/popular', 'PostController@method');
+Route::resource('posts', 'PostController');
 
 Route::get('home', function () {
     return response('return response : Hello World', 200)
