@@ -17,6 +17,7 @@ class PostController extends Controller
     {
         $posts = DB::table('posts')->get();
         //$posts = DB::select('select * from posts');
+        //$posts = Post::all();
         return view('post.index', ['posts' => $posts]);
     }
 
