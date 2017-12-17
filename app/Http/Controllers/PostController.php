@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Plant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,10 +16,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = DB::table('posts')->get();
+        //$posts = DB::table('posts')->get();
         //$posts = DB::select('select * from posts');
         //$posts = Post::all();
-        return view('post.index', ['posts' => $posts]);
+
+        //$posts = Post::where('active', 1)
+        //       ->orderBy('title', 'desc')
+        //       ->take(1)
+        //       ->get();
+
+        //$posts = Post::find([1, 2, 3]);
+        
+        $plants = Plant::all();
+        return view('post.index', ['posts' => $posts, 'plants' => $plants]);
     }
 
     /**
