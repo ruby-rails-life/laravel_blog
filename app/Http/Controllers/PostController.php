@@ -26,6 +26,7 @@ class PostController extends Controller
         //       ->get();
 
         //$posts = Post::find([1, 2, 3]);
+        //$posts = Post::where('id', '>', 1)->firstOrFail();
         
         $plants = Plant::all();
         return view('post.index', ['posts' => $posts, 'plants' => $plants]);
@@ -49,7 +50,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+        $post->title = $request->title;
+        $post->save();    
     }
 
     /**
@@ -87,6 +90,11 @@ class PostController extends Controller
         DB::transaction(function () {
             DB::table('posts')->update('...');
         }, 5);
+        */
+        /*
+        $post = Post::find(1);
+        $post->title = 'sunny';
+        $post->save();
         */
     }
 
