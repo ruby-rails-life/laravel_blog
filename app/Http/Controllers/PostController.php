@@ -103,6 +103,13 @@ class PostController extends Controller
         Post::where('title', 'sunny')
             ->update(['xxxx' => yyyy]);
         */
+
+        /*
+        $post = Post::updateOrCreate(
+            ['title' => 'happy'],
+            ['content' => 'Today is a happy day']
+        );
+        */
     }
 
     /**
@@ -113,6 +120,17 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        /*
+        $post = Post::find(1);
+        $post->delete();
+        */
+        
+        /*
+        Post::destroy(1);
+        Post::destroy([1, 2, 3]);
+        Post::destroy(1, 2, 3);
+        */
+
+        //$deletedRows = Post::where('title', 'sunny')->delete();
     }
 }
