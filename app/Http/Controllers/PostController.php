@@ -27,6 +27,20 @@ class PostController extends Controller
 
         //$posts = Post::find([1, 2, 3]);
         //$posts = Post::where('id', '>', 1)->firstOrFail();
+
+        /*
+        $posts = Post::withTrashed()
+                ->where('active', 1)
+                ->get();
+
+        $posts = Post::onlyTrashed()
+                ->where('active', 1)
+                ->get();        
+        
+        //完全削除
+        $post = Post::find(1);
+        $post->forceDelete();       
+        */
         
         $plants = Plant::all();
         return view('post.index', ['posts' => $posts, 'plants' => $plants]);
@@ -123,6 +137,9 @@ class PostController extends Controller
         /*
         $post = Post::find(1);
         $post->delete();
+        if ($post->trashed()) {
+    
+        }
         */
         
         /*
