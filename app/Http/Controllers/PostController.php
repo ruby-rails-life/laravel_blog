@@ -91,10 +91,17 @@ class PostController extends Controller
             DB::table('posts')->update('...');
         }, 5);
         */
+        
         /*
         $post = Post::find(1);
         $post->title = 'sunny';
         $post->save();
+        */
+        
+
+        /* 複数更新
+        Post::where('title', 'sunny')
+            ->update(['xxxx' => yyyy]);
         */
     }
 
