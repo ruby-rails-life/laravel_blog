@@ -45,6 +45,40 @@ class PostController extends Controller
         // 全グローバルスコープの削除
         //Post::withoutGlobalScopes()->get();
         //Post::withoutGlobalScope(TitleScope::class)->get();
+        
+        /*
+        $posts = Post::has('plants')->get();
+        $posts = Post::whereHas('plants', function ($query) {
+            $query->where('name', 'like', 'sunny%');
+        })->get();
+
+        $posts = Post::whereDoesntHave('plants', function ($query) {
+            $query->where('name', 'like', 'sunny%');
+        })->get();
+
+        $posts = Post::withCount([
+            'plants',
+            'plants as cond_plants_count' => function ($query) {
+                $query->where('name', 'like', 'sunny%');
+            }
+        ])->get();
+        echo $posts[0]->plants_count;
+        echo $posts[0]->cond_plants_count;
+        */
+
+        //Eagerロードへ
+        /*
+        $posts = Post::with('plants')->get();
+        foreach ($posts as $post) {
+            echo $post->plant->name;
+        }
+        $posts = Post::with('plants:name')->get();
+        
+        $posts = Post::with(['plants' => function ($query) {
+            $query->where('name', 'like', '%sunny%')
+                  ->orderBy('created_at', 'desc');
+        }])->get();
+        */
 
         $post = Post::find(1);
         foreach ($post->plants as $plant) {
@@ -87,15 +121,6 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //$posts = Post::has('plants')->get();
-        //$posts = Post::whereHas('plants', function ($query) {
-        //    $query->where('name', 'like', 'sunny%');
-        //})->get();
-
-        //$posts = Post::whereDoesntHave('plants', function ($query) {
-        //    $query->where('name', 'like', 'sunny%');
-        //})->get();
-
         return view('post.show', ['post' => $post]);
     }
 
