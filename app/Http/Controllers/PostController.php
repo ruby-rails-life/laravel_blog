@@ -110,7 +110,45 @@ class PostController extends Controller
     {
         $post = new Post;
         $post->title = $request->title;
-        $post->save();    
+        $post->save();  
+        /*
+        $plant = new Plant(['name' => 'happy']);
+        $post = Post::find(1);
+        $post->plants()->save($plant);
+        $post->plants()->saveMany([
+            new Plant(['name' => 'rose']),
+            new Plant(['name' => 'sunflower']),
+        ]);
+        */
+
+        /*
+        $plant = $post->plants()->create([
+            'name' => 'happy',
+        ]);
+        
+        $post->plants()->createMany([
+            [
+                'name' => 'rose',
+            ],
+            [
+                'name' => 'sunflower',
+            ],
+        ]);
+        */
+        
+        /*
+        $post = Post::find(1);
+        $post->plants()->attach($plantId);
+        
+        $post->plants()->detach($plantId);
+        $post->plants()->sync([1, 2, 3]);
+        $post->plants()->syncWithoutDetaching([1, 2, 3]);
+        //関連の切り替え 
+        $post->plants()->toggle([1, 2, 3]);
+
+        $post->plants()->updateExistingPivot($plantId, $attributes);
+        */
+
     }
 
     /**
