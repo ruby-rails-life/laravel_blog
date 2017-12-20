@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\TitleScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -32,4 +33,20 @@ class Post extends Model
     //protected $guarded = ['title'];
     //protected $guarded = [];
 
+    /**
+     * モデルの「初期起動」メソッド
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new TitleScope);
+
+        //クロージャによるグローバルスコープ
+        static::addGlobalScope('title', function (Builder $builder) {
+            $builder->where('title', '=', 'sunny');
+        });
+    }
 }

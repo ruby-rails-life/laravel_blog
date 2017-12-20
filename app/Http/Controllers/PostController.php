@@ -30,18 +30,22 @@ class PostController extends Controller
 
         /*
         $posts = Post::withTrashed()
-                ->where('active', 1)
+                ->where('title', 'sunny')
                 ->get();
 
         $posts = Post::onlyTrashed()
-                ->where('active', 1)
+                ->where('title', 'sunny')
                 ->get();        
         
         //完全削除
         $post = Post::find(1);
         $post->forceDelete();       
         */
-        
+
+        // 全グローバルスコープの削除
+        //Post::withoutGlobalScopes()->get();
+        //Post::withoutGlobalScope(TitleScope::class)->get();
+
         $plants = Plant::all();
         return view('post.index', ['posts' => $posts, 'plants' => $plants]);
     }
