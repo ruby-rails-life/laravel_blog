@@ -19,4 +19,8 @@ class Plant extends Model
 
     //protected $connection = 'connection-name';
 
+    public function posts(){
+        return $this->belongsToMany('post');
+    }
+
 }

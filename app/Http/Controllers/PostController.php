@@ -46,8 +46,14 @@ class PostController extends Controller
         //Post::withoutGlobalScopes()->get();
         //Post::withoutGlobalScope(TitleScope::class)->get();
 
+        $post = Post::find(1);
+        foreach ($post->plants as $plant) {
+            echo $plant->pivot->post_id;
+        }
+
+
         $plants = Plant::all();
-        return view('post.index', ['posts' => $posts, 'plants' => $plants]);
+        return view('post.index', ['posts' => $posts, 'plants' => $plants, 'post' => $post]);
     }
 
     /**
@@ -81,7 +87,16 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        //$posts = Post::has('plants')->get();
+        //$posts = Post::whereHas('plants', function ($query) {
+        //    $query->where('name', 'like', 'sunny%');
+        //})->get();
+
+        //$posts = Post::whereDoesntHave('plants', function ($query) {
+        //    $query->where('name', 'like', 'sunny%');
+        //})->get();
+
+        return view('post.show', ['post' => $post]);
     }
 
     /**

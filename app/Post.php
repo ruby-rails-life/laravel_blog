@@ -49,4 +49,8 @@ class Post extends Model
             $builder->where('title', '=', 'sunny');
         });
     }
+
+    public function plants(){
+        return $this->belongsToMany('plant');
+    }
 }
